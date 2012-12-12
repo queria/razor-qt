@@ -6,7 +6,7 @@
  *
  * Copyright: 2012 Razor team
  * Authors:
- *   Kuzma Shapran <kuzma.shapran@gmail.com>
+ *   Alexander Sokoloff <sokoloff.a@gmail.com>
  *
  * This program or library is free software; you can redistribute it
  * and/or modify it under the terms of the GNU Lesser General Public
@@ -25,17 +25,34 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifndef RAZORSYSSTATUTILS_HPP
-#define RAZORSYSSTATUTILS_HPP
 
-#include <QtCore/QString>
+#ifndef TECHNICALINFO_H
+#define TECHNICALINFO_H
 
-namespace PluginSysStat
+#include <QtCore/QList>
+#include <QtCore/QPair>
+#include <QDateTime>
+#include <QVariant>
+
+class TechInfoTable;
+
+class TechnicalInfo
 {
+public:
+    TechnicalInfo();
+    ~TechnicalInfo();
 
-QString netSpeedToString(int value);
-int netSpeedFromString(QString value);
+    QString html() const;
+    QString text() const;
 
-}
+    TechInfoTable *newTable(const QString &title);
+    void add(const TechInfoTable &table);
 
-#endif // RAZORSYSSTATUTILS_HPP
+private:
+    QList<TechInfoTable*> mItems;
+};
+
+
+
+
+#endif // TECHNICALINFO_H

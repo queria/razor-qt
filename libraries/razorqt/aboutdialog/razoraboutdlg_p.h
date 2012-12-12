@@ -4,9 +4,9 @@
  * Razor - a lightweight, Qt based, desktop toolset
  * http://razor-qt.org
  *
- * Copyright: 2012 Razor team
+ * Copyright: 2010-2011 Razor team
  * Authors:
- *   Kuzma Shapran <kuzma.shapran@gmail.com>
+ *   Petr Vanek <petr@scribus.info>
  *
  * This program or library is free software; you can redistribute it
  * and/or modify it under the terms of the GNU Lesser General Public
@@ -25,17 +25,29 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifndef RAZORSYSSTATUTILS_HPP
-#define RAZORSYSSTATUTILS_HPP
+#ifndef RAZORABOUTDLG_P_H
+#define RAZORABOUTDLG_P_H
 
-#include <QtCore/QString>
+#include <QtGui/QDialog>
+#include "ui_razoraboutdlg.h"
 
-namespace PluginSysStat
+/**
+ * @brief prepares the data to show and fills the form, then shows.
+ */
+class RazorAboutDLGPrivate: public QDialog, public Ui_about
 {
+    Q_OBJECT
 
-QString netSpeedToString(int value);
-int netSpeedFromString(QString value);
+public:
+    RazorAboutDLGPrivate();
+    QString titleText() const;
+    QString aboutText() const;
+    QString authorsText() const;
+    QString thanksText() const;
+    QString translationsText() const;
 
-}
+public slots:
+    void copyToCliboardTechInfo();
+};
 
-#endif // RAZORSYSSTATUTILS_HPP
+#endif // RAZORABOUTDLG_P_H
